@@ -16,6 +16,19 @@ class Category:
     def __repr__(self):
         return f"<Category {self.id}: {self.name}>"
     
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter    
+    def name(self, name):
+        if isinstance(name, str) and len(name):
+            self._name = name
+        elif not isinstance(name, str):
+            raise ValueError("Name must be a string.")
+        else:
+            raise ValueError("Name cannot be an empty string.")
+    
     #A class method denoted by the @classmethod decorator. cls is used to execute the SQL command to create the categories table in database. The table has two columns, id and name.
     @classmethod
     def create_table(cls):
