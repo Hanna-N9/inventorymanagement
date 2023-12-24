@@ -2,15 +2,18 @@
 
 from models.__init__ import CONN, CURSOR
 from models.category import Category
-
+from models.product import Product
 import ipdb
 
 def reset_database():
     Category.drop_table()
     Category.create_table()
+    Product.drop_table()
+    Product.create_table()
     
     # Create seed data
     
+    #For categories table
     electronic = Category.create("Electronics")
     furniture = Category.create("Furniture")
     food = Category.create("Food")
@@ -20,5 +23,8 @@ def reset_database():
     kitchen = Category.create("Kitchen")
     home = Category.create("Home Appliances")
     
+    #For products table
+    Product.create("Apple iPhone 12 Pro", 999.99, "A powerful smartphone with great camera capabilities.", 50, "iPhone", electronic.id)    
+
 reset_database()
 ipdb.set_trace()
