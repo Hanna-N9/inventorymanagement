@@ -1,4 +1,5 @@
 from models.__init__ import CURSOR, CONN
+from models.product import Product
 
 class Category:
     
@@ -11,7 +12,7 @@ class Category:
         self.id = id
         self.name = name
     
-    #A special method that provides a string representation for Category class. It returns a string including each attribute of the instance.
+    #A method that provides a string representation for Category class. It returns a string including each attribute of the instance.
     #Ex. category = Category('Electronics', 1), print(repr(category)) ==> Outputs: <Category 1: Electronics>
     def __repr__(self):
         return f"<Category {self.id}: {self.name}>"
@@ -38,8 +39,10 @@ class Category:
             name TEXT
             )
         """
-        CURSOR.execute(sql) #A SQLite cursor object to execute an SQL command
-        CONN.commit() #After the SQL command is executed, this syntax commits the performances/changes to save to the database permanently.
+        #A SQLite cursor object to execute an SQL command
+        CURSOR.execute(sql) 
+        #After the SQL command is executed, this syntax commits the performances/changes to save to the database permanently.
+        CONN.commit() 
     
     #Drop the categories table from the database if it exist 
     @classmethod
@@ -57,10 +60,13 @@ class Category:
             INSERT INTO categories (name)
             VALUES (?)
         """
-        CURSOR.execute(sql, (self.name,)) #Executes the SQL command and second argument to execute is a list or tuple containing the values to be inserted into the table. 
+        #Executes the SQL command and second argument to execute is a list or tuple containing the values to be inserted into the table.
+        CURSOR.execute(sql, (self.name,)) #With a trailing comma is when executing a query with a single parameter and neccessary to denote a tuple with a single element. - Purpose to avoid error
         CONN.commit()
-        self.id = CURSOR.lastrowid #Sets the id attribute of the instance to the ID of the newly inserted row. Lastrowid property of the cursor object returns the ID of the last row that was inserted.
-        type(self).all[self.id] = self #Adds the newly created instance to class's all dictionary. Uses the id of the instances as keys and the instances themselves as values. Purpose is to retrieve an instance from the database by its id easily.
+        #Sets the id attribute of the instance to the ID of the newly inserted row. Lastrowid property of the cursor object returns the ID of the last row that was inserted.
+        self.id = CURSOR.lastrowid 
+        #Adds the newly created instance to class's all dictionary. Uses the id of the instances as keys and the instances themselves as values. Purpose is to retrieve an instance from the database by its id easily. 
+        type(self).all[self.id] = self     
      
     #Uses an argument to create a new instance of the Category's class with a given name which then calls save method on this new instance to save it to the database. Finally, it returns the newly created instance.
     #Meaning, this will create a new Category instance with the name 'given name's value' to save it to the database and return the new instance.
@@ -77,7 +83,8 @@ class Category:
             SET name = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.id)) #Executes the SQL command, passing in a tuple (self.name, self.id) as the values for the placeholders ? in the SQL command.
+        #Executes the SQL command, passing in a tuple (self.name, self.id) as the values for the placeholders ? in the SQL command.
+        CURSOR.execute(sql, (self.name, self.id)) 
         CONN.commit()
      
     #Delete a record from the categories table
@@ -89,12 +96,14 @@ class Category:
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
         del type(self).all[self.id]
-        self.id = None #Remove the deleted instance from the class's ALL dictionary and sets the id of the instance to None.
+        #Remove the deleted instance from the class's ALL dictionary and sets the id of the instance to None.
+        self.id = None 
 
     #A class method that creates a Category instance from a row of data retrieved from the categories table in the database
     #Ensure that each Category instance corresponds to exactly one row in the categories table, and that there is only one Category instance per id 
     @classmethod
-    def instance_from_db(cls, row): #A row parameter, tuple or list, contains the data for a single row from the categories table
+    #A row parameter, tuple or list, contains the data for a single row from the categories table
+    def instance_from_db(cls, row): 
         #Checks if a Category instance with the same id, the first element of the row, already exists in the class's all dictionary.
         category = cls.all.get(row[0])
         if category:
@@ -145,15 +154,13 @@ class Category:
     
     #Retrieve all product records associated with a particular category from the categories table in the database and returns them as a list of Product instances. 
     #Defines a SQL command to select all records from the categories table where the category_id matches the id of the current Category instance. It executes this command using CURSOR.execute(sql, (self.id,)), and fetches all resulting rows with fetchall method. These rows, lists or tuples, contain the data for each product associated with the category.
-    
-    # def products(self):
-    #     from models.product import Product
-    #     sql = """
-    #         SELECT * FROM categories
-    #         WHERE category_id = ?
-    #     """
-    #     CURSOR.execute(sql, (self.id,),)
-    #     rows = CURSOR.fetchall()
-    #     return [Product.instance_from_db(row) for row in rows]
+    def products(self):
+        sql = """
+            SELECT * FROM categories
+            WHERE category_id = ?
+        """
+        CURSOR.execute(sql, (self.id,),)
+        rows = CURSOR.fetchall()
+        return [Product.instance_from_db(row) for row in rows]
     
 
