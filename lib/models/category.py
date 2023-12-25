@@ -1,5 +1,4 @@
 from models.__init__ import CURSOR, CONN
-from models.product import Product
 
 class Category:
     
@@ -87,7 +86,6 @@ class Category:
         CURSOR.execute(sql, (self.name, self.id)) 
         CONN.commit()
      
-    #Delete a record from the categories table
     def delete(self):
         sql = """
             DELETE FROM categories
@@ -96,9 +94,49 @@ class Category:
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
         del type(self).all[self.id]
-        #Remove the deleted instance from the class's ALL dictionary and sets the id of the instance to None.
         self.id = None 
-
+        
+    #Delete a record from the categories table and reassign associated products to a different category
+    def delete(self):
+        #Reassign all products of a deleted specific category to a different category called 'General' by using a find_by_name method that finds a category by its name
+        #If the 'General' category exists, it iterates over all products of the current category, changes their category_id to the id of the 'General' category, then saves them.
+        general = Category.find_by_name('General') 
+        if general:
+            for product in self.products():
+                # Reassign the category_id of the product to general.id
+                product.category_id = general.id
+                #Save the updated product
+                product.save()
+        else:
+            print("General category doesn't exist.")
+        #Delete the category by its id
+        sql = """
+            DELETE FROM categories
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+        del type(self).all[self.id]
+        #Remove the deleted instance from the class's ALL dictionary and sets the id of the instance to None.
+        self.id = None
+        
+   #Delete a record from the categories table and reassign associated products as None but this may cause issues/errors
+    # def delete(self):
+    #    #Set the category_id of the product to None
+    #     product.category_id = None
+    #     #Save the updated product
+    #     product.save()
+    # #Delete the category by its id
+    # sql = """
+    #     DELETE FROM categories
+    #     WHERE id = ?
+    #     """
+    #     CURSOR.execute(sql, (self.id,))
+    #     CONN.commit()
+    #     del type(self).all[self.id]
+    #     #Remove the deleted instance from the class's ALL dictionary and sets the id of the instance to None.
+    # self.id = None
+        
     #A class method that creates a Category instance from a row of data retrieved from the categories table in the database
     #Ensure that each Category instance corresponds to exactly one row in the categories table, and that there is only one Category instance per id 
     @classmethod
@@ -152,9 +190,10 @@ class Category:
         row = CURSOR.execute(sql, (name,)).fetchone()
         return cls.instance_from_db(row) if row else None
     
-    #Retrieve all product records associated with a particular category from the categories table in the database and returns them as a list of Product instances. 
+    #Retrieve all product records associated with a particular category from the categories table in the database and returns them as a list of Product instance. 
     #Defines a SQL command to select all records from the categories table where the category_id matches the id of the current Category instance. It executes this command using CURSOR.execute(sql, (self.id,)), and fetches all resulting rows with fetchall method. These rows, lists or tuples, contain the data for each product associated with the category.
     def products(self):
+        from models.product import Product
         sql = """
             SELECT * FROM categories
             WHERE category_id = ?
@@ -162,5 +201,6 @@ class Category:
         CURSOR.execute(sql, (self.id,),)
         rows = CURSOR.fetchall()
         return [Product.instance_from_db(row) for row in rows]
+
     
 
