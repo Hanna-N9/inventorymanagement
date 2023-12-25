@@ -22,9 +22,12 @@ def reset_database():
     book = Category.create("Books")
     kitchen = Category.create("Kitchen")
     home = Category.create("Home Appliances")
+    #If any specific record from the top is deleted, the products assigned to that category is moved to this General category 
+    general = Category.create("General")
+
     
     #For products table
-    Product.create("Apple iPhone 12 Pro", 999.99, "A powerful smartphone with great camera capabilities.", 50, "iPhone", electronic.id)    
+    Product.create("iPhone 15 Pro", 999.99, "A powerful smartphone with great camera capabilities.", 50, "iPhone", electronic.id)
 
 reset_database()
 ipdb.set_trace()
