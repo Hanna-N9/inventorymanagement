@@ -10,9 +10,7 @@ def reset_database():
     Category.create_table()
     Product.drop_table()
     Product.create_table()
-    
-    # Create seed data
-    
+        
     #For categories table
     electronic = Category.create("Electronics")
     furniture = Category.create("Furniture")
