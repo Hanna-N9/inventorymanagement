@@ -158,8 +158,7 @@ class Category:
     @classmethod
     def get_all(cls):
         sql = """
-            SELECT *
-            FROM categories
+            SELECT * FROM categories
         """
         #fetchall is to retrieve all resulting rows. Contain the data for each row from the table.
         rows = CURSOR.execute(sql).fetchall() 
@@ -170,8 +169,7 @@ class Category:
     @classmethod
     def find_by_id(cls, id):
         sql = """
-            SELECT *
-            FROM categories
+            SELECT * FROM categories
             WHERE id = ?
         """
         row = CURSOR.execute(sql, (id,)).fetchone()
@@ -183,24 +181,23 @@ class Category:
     @classmethod
     def find_by_name(cls, name):
         sql = """
-            SELECT *
-            FROM categories
+            SELECT * FROM categories
             WHERE name is ?
         """
         row = CURSOR.execute(sql, (name,)).fetchone()
         return cls.instance_from_db(row) if row else None
     
-    #Retrieve all product records associated with a particular category from the categories table in the database and returns them as a list of Product instance. 
-    #Defines a SQL command to select all records from the categories table where the category_id matches the id of the current Category instance. It executes this command using CURSOR.execute(sql, (self.id,)), and fetches all resulting rows with fetchall method. These rows, lists or tuples, contain the data for each product associated with the category.
+    #Fetch all product records in a specific category from the categories table
+    #Defines a SQL command to select all records from the categories table where the category_id matches the id of the current Category instance. It executes this command using CURSOR.execute(sql, (self.id,)), and fetches all resulting rows with fetchall method. These rows, lists or tuples, contain the data for each product associated with the category.    
     def products(self):
         from models.product import Product
         sql = """
-            SELECT * FROM categories
+            SELECT * FROM products
             WHERE category_id = ?
         """
         CURSOR.execute(sql, (self.id,),)
         rows = CURSOR.fetchall()
         return [Product.instance_from_db(row) for row in rows]
+   
 
-    
-
+   
