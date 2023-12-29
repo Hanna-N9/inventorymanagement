@@ -1,6 +1,6 @@
 from models.category import Category
 from models.product import Product
-
+from texttable import Texttable
 
 def exit_program():
     print("Goodbye!")
@@ -8,11 +8,19 @@ def exit_program():
     
 #For category
     
-def list_categories():
+""" def list_categories():
    categories = Category.get_all()
    for category in categories:
-       print(category)
-       
+       print(category) """
+
+def list_categories():
+   categories = Category.get_all()
+   table = Texttable()
+   table.add_rows([["ID", "NAME"]] + [[category.id, category.name] for category in categories]) #Add rows to the table
+   print("\n")
+   print(table.draw())
+
+   
 def create_category():
    name = input("Enter the category's name: ")
    try:
@@ -25,16 +33,17 @@ def delete_category():
    id_ = input("Enter the category's id: ")
    if category := Category.find_by_id(id_):
        category.delete()
-       print(f"Category {id_} deleted")
+       print(f"Category's id {id_} is deleted.")
    else:
-       print(f"Category {id_} not found")
+       print(f"Category's id {id_} not found")
  
 # #Concise       
 # def find_category_by_name():
 #    name = input("Enter the category"s name: ")
 #    category = Category.find_by_name(name)
 #    print(category) if category else print(f"Category {name} not found")
-   
+
+"""    
 #For a beginner in Python to read this code or for a user to clearly understand what is on the output - user-friendly as it provides detailed feedback to the user. 
 def find_category_by_name():
  name = input("Enter the category's name: ")
@@ -42,7 +51,20 @@ def find_category_by_name():
  if category:
      print(f"Category: {category}")
  else:
+     print(f"No category found with name: {name}") """
+  
+#For a beginner in Python to read this code or for a user to clearly understand what is on the output - user-friendly as it provides detailed feedback to the user.    
+def find_category_by_name():
+ name = input("Enter the category's name: ")
+ category = Category.find_by_name(name)
+ if category:
+     table = Texttable()
+     table.add_rows([["ID", "NAME"]] + [[category.id, category.name]]) #Add rows to the table
+     print("\n")
+     print(table.draw())
+ else:
      print(f"No category found with name: {name}")
+
    
 def find_category_by_id():
    id_ = input("Enter the category's id: ")
@@ -51,23 +73,56 @@ def find_category_by_id():
        print(f"Category: {category}")
    else:
        print(f"No category found with id: {id_}")
+       
+def find_category_by_id():
+ id_ = input("Enter the category's id: ")
+ category = Category.find_by_id(id_)
+ if category:
+     table = Texttable()
+     table.add_rows([["ID", "NAME"]] + [[category.id, category.name]]) 
+     print("\n")
+     print(table.draw())
+ else:
+     print(f"No category found with id: {id_}")
 
-def view_products_of_category():
+
+""" def view_products_of_category():
  id_ = input("Enter the category's id: ")
  if category := Category.find_by_id(id_):
      products = category.products()
      for product in products:
          print(product)
  else:
-     print(f"No category found with id: {id_}")
+     print(f"No category found with id: {id_}") """  
+    
+         
+def view_products_of_category():
+   id_ = input("Enter the category's id: ")
+   if category := Category.find_by_id(id_):
+       products = category.products()
+       table = Texttable()
+       table.set_cols_width([2, 10, 10, 50, 10, 10, 10]) #Set the width of the columns
+       table.add_rows([["ID", "NAME", "PRICE", "DESCRIPTION", "QUANTITY IN STOCK", "SUB_CATEGORY", "CATEGORY_ID"]] + [[product.id, product.name, product.price, product.description, product.quantity_in_stock, product.sub_category, product.category_id] for product in products]) #Add rows to the table
+       print("\n")
+       print(table.draw())
+   else:
+       print(f"No category found with id: {id_}")
        
-       
+  
 #For product
        
-def list_products():
+""" def list_products():
    products = Product.get_all()
    for product in products:
        print(product)
+        """
+def list_products():
+  products = Product.get_all()
+  table = Texttable()
+  table.set_cols_width([2, 10, 10, 50, 10, 10, 10]) 
+  table.add_rows([["ID", "NAME", "PRICE", "DESCRIPTION", "QUANTITY IN STOCK", "SUB_CATEGORY", "CATEGORY ID"]] + [[product.id, product.name, product.price, product.description, product.quantity_in_stock, product.sub_category, product.category_id] for product in products]) 
+  print("\n")
+  print(table.draw())
          
 def create_product():
   name = input("Enter the product's name: ")
@@ -86,25 +141,51 @@ def delete_product():
    id_ = input("Enter the product's id: ")
    if product := Product.find_by_id(id_):
        product.delete()
-       print(f"Product {id_} deleted")
+       print(f"Product's id {id_} is deleted.")
    else:
-       print(f"Product {id_} not found")
+       print(f"Product's id {id_} not found")
    
-def find_product_by_name():
+""" def find_product_by_name():
  name = input("Enter the product's name: ")
  product = Product.find_by_name(name)
  if product:
      print(f"Product: {product}")
  else:
      print(f"No product found with name: {name}")
+     """ 
+     
+def find_product_by_name():
+    name = input("Enter the product's name: ")
+    product = Product.find_by_name(name)
+    if product:
+        table = Texttable()
+        table.set_cols_width([2, 10, 10, 50, 10, 10, 10]) 
+        table.add_rows([["ID", "NAME", "PRICE", "DESCRIPTION", "QUANTITY IN STOCK", "SUB_CATEGORY", "CATEGORY_ID"]] + [[product.id, product.name, product.price, product.description, product.quantity_in_stock, product.sub_category, product.category_id]]) 
+        print("\n")
+        print(table.draw())
+    else:
+        print(f"No product found with name: {name}")
 
-def find_product_by_id():
+
+""" def find_product_by_id():
   id_ = input("Enter the product's id: ")
   product = Product.find_by_id(id_)
   if product:
       print(f'Product: {product}')
   else:
-      print(f'No product found with id: {id_}')
+      print(f'No product found with id: {id_}') """
 
+def find_product_by_id():
+  id_ = input("Enter the product's id: ")
+  product = Product.find_by_id(id_)
+  if product:
+      table = Texttable()
+      table.set_cols_width([2, 10, 10, 50, 10, 10, 10]) 
+      table.add_rows([["ID", "NAME", "PRICE", "DESCRIPTION", "QUANTITY IN STOCK", "SUB_CATEGORY", "CATEGORY_ID"]] + [[product.id, product.name, product.price, product.description, product.quantity_in_stock, product.sub_category, product.category_id]])
+      print("\n")
+      print(table.draw())
+  else:
+      print(f"No product found with id: {id_}")
+      
        
-       
+
