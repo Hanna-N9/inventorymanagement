@@ -1,9 +1,10 @@
 from models.category import Category
 from models.product import Product
 from texttable import Texttable
+from colorama import Fore, Style
 
 def exit_program():
-    print("Goodbye!")
+    print("  Thank you for checking out our interactive program! Goodbye!\n")
     exit()
     
 #For category
@@ -19,17 +20,17 @@ def create_category():
    name = input("Enter the category's name: ")
    try:
        category = Category.create(name)
-       print(f"Success: {category}")
+       print(Fore.GREEN, f"Success: {category}", Style.RESET_ALL,)
    except Exception as exc:
-       print("Error creating category: ", exc)
+       print(Fore.RED, "Error creating category: ", Style.RESET_ALL, exc)
     
 def delete_category():
-   id_ = input("Enter the category's id: ")
+   id_ = input("Enter the category's ID: ")
    if category := Category.find_by_id(id_):
        category.delete()
-       print(f"Category's id {id_} is deleted.")
+       print(Fore.GREEN, f"Category's ID {id_} is deleted.", Style.RESET_ALL)
    else:
-       print(f"Category's id {id_} not found")
+       print(Fore.RED, f"Category's ID {id_} was not found.", Style.RESET_ALL)
    
 def find_category_by_name():
  name = input("Enter the category's name: ")
@@ -40,10 +41,10 @@ def find_category_by_name():
      print("\n")
      print(table.draw())
  else:
-     print(f"No category found with name: {name}")
+     print(Fore.RED, f"No category found with the name: {name}.", Style.RESET_ALL)
        
 def find_category_by_id():
- id_ = input("Enter the category's id: ")
+ id_ = input("Enter the category's ID: ")
  category = Category.find_by_id(id_)
  if category:
      table = Texttable()
@@ -51,10 +52,10 @@ def find_category_by_id():
      print("\n")
      print(table.draw())
  else:
-     print(f"No category found with id: {id_}")
+     print(Fore.RED, f"No category found with the ID: {id_}", Style.RESET_ALL)
      
 def view_products_of_category():
-   id_ = input("Enter the category's id: ")
+   id_ = input("Enter the category's ID: ")
    if category := Category.find_by_id(id_):
        products = category.products()
        table = Texttable()
@@ -63,7 +64,7 @@ def view_products_of_category():
        print("\n")
        print(table.draw())
    else:
-       print(f"No category found with id: {id_}")
+       print(Fore.RED, f"No category found with the ID: {id_}", Style.RESET_ALL)
        
        
 #For product
@@ -82,20 +83,20 @@ def create_product():
   description = input("Enter the product's description: ")
   quantity_in_stock = int(input("Enter the product's quantity in stock: "))
   sub_category = input("Enter the product's sub-category: ")
-  category_id = int(input("Enter the product's category id: "))
+  category_id = int(input("Enter the product's category's ID: "))
   try:
       product = Product.create(name, price, description, quantity_in_stock, sub_category, category_id)
-      print(f"Success: {product}")
+      print(Fore.GREEN, f"Success: {product}", Style.RESET_ALL)
   except Exception as exc:
-      print("Error creating product: ", exc)
+      print(Fore.RED, "Error creating product: ", Style.RESET_ALL, exc)
 
 def delete_product():
-   id_ = input("Enter the product's id: ")
+   id_ = input("Enter the product's ID: ")
    if product := Product.find_by_id(id_):
        product.delete()
-       print(f"Product's id {id_} is deleted.")
+       print(Fore.GREEN, f"Product's ID {id_} is deleted.", Style.RESET_ALL)
    else:
-       print(f"Product's id {id_} not found")
+       print(Fore.RED, f"Product's ID {id_} was not found", Style.RESET_ALL)
         
 def find_product_by_name():
     name = input("Enter the product's name: ")
@@ -107,10 +108,10 @@ def find_product_by_name():
         print("\n")
         print(table.draw())
     else:
-        print(f"No product found with name: {name}")
+        print(Fore.RED, f"No product found with the name: {name}", Style.RESET_ALL)
 
 def find_product_by_id():
-  id_ = input("Enter the product's id: ")
+  id_ = input("Enter the product's ID: ")
   product = Product.find_by_id(id_)
   if product:
       table = Texttable()
@@ -119,7 +120,7 @@ def find_product_by_id():
       print("\n")
       print(table.draw())
   else:
-      print(f"No product found with id: {id_}")
+      print(Fore.RED, f"No product found with the ID: {id_}", Style.RESET_ALL)
       
        
 
