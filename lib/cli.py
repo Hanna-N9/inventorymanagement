@@ -19,7 +19,8 @@ from helpers import (
 
 #User Prompt to display menu to the user and asking them to make an option
 def menu():
-    print(Fore.BLUE, "\nFor Categories Table", Style.RESET_ALL)
+    print(Fore.CYAN, "\n   0. Exit the program", Style.RESET_ALL)
+    print(Fore.BLUE, "For Categories Table", Style.RESET_ALL)
     print(Fore.CYAN, "  1. Display all categories", Style.RESET_ALL)
     print(Fore.CYAN, "  2. Find a category by name", Style.RESET_ALL)
     print(Fore.CYAN, "  3. Find a category by ID", Style.RESET_ALL)
@@ -35,13 +36,13 @@ def menu():
 
 #A while loop to keep the user in the application until they choose to exit
 def main():
-    print(Fore.BLUE, "Welcome to our interactive program!", Style.RESET_ALL)
-    print("You can manage categories and products by selecting a number from the menu.\n")
-    print("To exit the program, enter '0'.")
-    
+    print(Fore.BLUE + Style.BRIGHT, "\n --------------------| Welcome to InventoryManagement! |--------------------", Style.RESET_ALL)
+    print(Fore.MAGENTA, "You can manage categories and products by selecting a number from the menu below to get started!\n", Style.RESET_ALL)
+    print(Fore.YELLOW, "To exit the program, enter '0'.", Style.RESET_ALL)
+
     while True:
         menu()
-        print("-" * 40) # Add a separator line
+        print("-" * 45) # Add a separator line
         choice = input(Fore.YELLOW + "\nSelect a Prompt: " + Style.RESET_ALL)
         if choice == "0":
             exit_program()
@@ -73,5 +74,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
