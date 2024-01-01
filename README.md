@@ -21,15 +21,33 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
 ## How to Install
 
 1. Open your terminal
-2. Fork and clone the repository: ``` git clone git@github.com:Hanna-N9/inventorymanagement.git ```
-4. Run the command to install the packages and create a virtual environment in your terminal: ``` pipenv install ```
-5. Run the command to activate the virtual environment: ``` pipenv shell ```
-6. Run the command to initialize a database with data of categories and products. This command is to execute a Python script located at lib/seed.py: ``` python3 lib/seed.py ```
+2. Fork and clone the repository: 
+   ```
+   git clone https://github.com/brendenwest/lostappleproject.git
+   ```
+4. Run the command to install the packages and create a virtual environment in your terminal:    
+   ```
+   pipenv install
+   ``` 
+6. Run the command to activate the virtual environment:
+   ```
+   pipenv shell
+   ```
+8. Run the command to initialize a database with data of categories and products. This command is to execute a Python script located at lib/seed.py:
+   ```
+   python3 lib/seed.py
+   ```
 
 ## How to Use the App
-1. Run the command to start the app: ``` python3 lib/cli.py ```
-2. You will see the options of action that you can choose to select from the menu. The option you choose will display the output of the results.
-3. If there were changes in the database like deleting, creating, or any other changes, you can run the command to get the original database again: ``` python3 lib/seed.py ```
+1. Run the command to start the app:
+   ```
+   python3 lib/cli.py
+   ```
+3. You will see the options of action that you can choose to select from the menu. The option you choose will display the output of the results.
+4. If there were changes in the database like deleting, creating, or any other changes, you can run the command to get the original database again:
+   ```
+   python3 lib/seed.py
+   ```
 
 ## Contributing
 
