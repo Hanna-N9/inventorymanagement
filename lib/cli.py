@@ -25,12 +25,12 @@ def menu():
     print(Fore.CYAN, "  2. Find a category by name", Style.RESET_ALL)
     print(Fore.CYAN, "  3. Find a category by ID", Style.RESET_ALL)
     print(Fore.CYAN, "  4. Create a new category to the database", Style.RESET_ALL)
-    print(Fore.CYAN, "  5. View all products in a category table", Style.RESET_ALL)
-    print(Fore.CYAN, "  6. Delete a category", Style.RESET_ALL)
+    print(Fore.CYAN, "  5. Delete a category", Style.RESET_ALL)
     print(Fore.BLUE, "\nFor Products Table", Style.RESET_ALL)
-    print(Fore.CYAN, "  7. Display all products", Style.RESET_ALL)
-    print(Fore.CYAN, "  8. Find a product by name", Style.RESET_ALL)
-    print(Fore.CYAN, "  9. Find a product by ID", Style.RESET_ALL)
+    print(Fore.CYAN, "  6. Display all products", Style.RESET_ALL)
+    print(Fore.CYAN, "  7. Find a product by name", Style.RESET_ALL)
+    print(Fore.CYAN, "  8. Find a product by ID", Style.RESET_ALL)
+    print(Fore.CYAN, "  9. View all products in a category table", Style.RESET_ALL)
     print(Fore.CYAN, "  10. Create a new product to the database", Style.RESET_ALL)
     print(Fore.CYAN, "  11. Delete a product", Style.RESET_ALL)
 
@@ -55,16 +55,16 @@ def main():
         elif choice == "4":
             create_category()
         elif choice == "5":
-           view_products_of_category()
-        elif choice == "6":
            delete_category()
            
-        elif choice == "7":
+        elif choice == "6":
             list_products()
-        elif choice == "8":
+        elif choice == "7":
            find_product_by_name()
-        elif choice == "9":
+        elif choice == "8":
            find_product_by_id()
+        elif choice == "9":
+           view_products_of_category()
         elif choice == "10":
            create_product()
         elif choice == "11":
