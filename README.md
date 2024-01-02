@@ -18,7 +18,12 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
 
 - **Error Handling:** This application has informative errors to display clear error messages to the user when an action fails.
 
-## How to Install
+## Requirements for Installation
+- Python version: 3.8.13
+- Pip 
+- SQLite 3
+
+## How to Get Started
 
 1. Open your terminal
 2. Fork and clone the repository:
@@ -44,10 +49,13 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
    ```
    python3 lib/cli.py
    ```
-2. You will see the options of action that you can choose to select from the menu. The option you choose will display the output of the results.
+2. You will see the options of action that you can choose to select from the menu.
+   
    ![Alt text](lib/images/menu.jpeg)
+   
+   The option you choose will display the output of the results.
 
-3. If there were changes in the database like deleting, creating, or any other changes, you can run the command to get the original database again:
+4. If there are changes in the database like deleting, creating, or any other changes, you can run the command to get the original database again:
    ```
    python3 lib/seed.py
    ```
