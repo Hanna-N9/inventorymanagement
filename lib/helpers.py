@@ -72,7 +72,7 @@ def view_products_of_category():
 def list_products():
   products = Product.get_all()
   table = Texttable()
-  table.set_cols_width([2, 10, 10, 50, 10, 10, 10]) 
+  table.set_cols_width([2, 15, 10, 50, 12, 12, 12]) 
   table.add_rows([["ID", "NAME", "PRICE", "DESCRIPTION", "QUANTITY IN STOCK", "SUB_CATEGORY", "CATEGORY_ID"]] + [[product.id, product.name, product.price, product.description, product.quantity_in_stock, product.sub_category, product.category_id] for product in products]) 
   print("\n")
   print(table.draw())
@@ -103,7 +103,7 @@ def find_product_by_name():
     product = Product.find_by_name(name)
     if product:
         table = Texttable()
-        table.set_cols_width([2, 10, 10, 50, 10, 10, 10]) 
+        table.set_cols_width([2, 15, 10, 50, 12, 12, 12]) 
         table.add_rows([["ID", "NAME", "PRICE", "DESCRIPTION", "QUANTITY IN STOCK", "SUB_CATEGORY", "CATEGORY_ID"]] + [[product.id, product.name, product.price, product.description, product.quantity_in_stock, product.sub_category, product.category_id]]) 
         print("\n")
         print(table.draw())
@@ -115,7 +115,7 @@ def find_product_by_id():
   product = Product.find_by_id(id_)
   if product:
       table = Texttable()
-      table.set_cols_width([2, 10, 10, 50, 10, 10, 10]) 
+      table.set_cols_width([2, 15, 10, 50, 12, 12, 12]) 
       table.add_rows([["ID", "NAME", "PRICE", "DESCRIPTION", "QUANTITY IN STOCK", "SUB_CATEGORY", "CATEGORY_ID"]] + [[product.id, product.name, product.price, product.description, product.quantity_in_stock, product.sub_category, product.category_id]])
       print("\n")
       print(table.draw())
