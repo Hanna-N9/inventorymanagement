@@ -1,14 +1,16 @@
 # InventoryManagement!
 
-InventoryManagement! project is a command-line interface (CLI) built with Python that focuses on managing inventories of products categorized under various categories in an SQLite database. This application is constructed for a user to perform several operations, including creating a record, displaying all data, finding a specific record, and deleting an existing record on categories and products.
+The InventoryManagement! project is a command-line interface (CLI) built with Python. It focuses on managing inventories of products categorized under various categories in an SQLite database. This application leverages Object-Relational Mapping (ORM) to convert data from Python into SQL for interaction with the database. Additionally, it uses SQLite, a software library that provides a database system for Python to connect to an SQL database.
 
-InventoryManagement! is helpful for anyone who needs to manage an inventory of products, especially in a warehouse or retail setting. This application allows users to easily track their inventory and confirm all products are correctly categorized and accounted for.
+This application is designed to allow users to perform several operations, including creating a record, displaying all data, finding a specific record, and deleting an existing record on categories and products.
+
+InventoryManagement! is helpful for anyone who needs to manage an inventory of products, such as in a warehouse or retail setting. It allows users to easily track their inventory and ensure all products are correctly categorized and accounted for.
 
 ## Features
 
 - **Categories:** The categories table in the database has ID and name attributes.
   - **Manage Categories:** A user can create a new category, retrieve all categories, find a category by name or ID, and delete a category.
-- **Products:** The products table in the database includes attributes of ID, name, price, description, quantity in stock, sub-category, and category's ID.
+- **Products:** The products table in the database includes columns of ID, name, price, description, quantity in stock, sub-category, and category's ID.
 
   - **Manage Categories:** A user can create a new product, retrieve all products, find a product by name or ID, and delete a product.
 
