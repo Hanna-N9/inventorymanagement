@@ -23,7 +23,7 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
 ## Requirements for Installation
 - Python version: 3.8.13
 - Pip 
-- SQLite 3
+- SQLite3
 
 ## How to Get Started
 
