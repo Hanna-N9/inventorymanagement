@@ -21,11 +21,11 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
 - **Error Handling:** This application has informative errors to display clear error messages to the user when an action fails.
 
 ## Dependencies in Project
-- colorama: This is used to colorize text.
-- texttable: This is used to display structured tables.
-- faker
-- pytest
-- ipdb
+- colorama: To colorize text
+- texttable: To display structured tables
+- faker: To generate fake data
+- pytest: A testing framework
+- ipdb: A Python debugger
 
 ## Requirements for Installation
 - Python version: 3.8.13
