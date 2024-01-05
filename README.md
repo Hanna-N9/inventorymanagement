@@ -23,6 +23,9 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
 ## Dependencies in Project
 - colorama: This is used to colorize text in terminal.
 - texttable: This is used to display structured tables.
+- faker
+- pytest
+- ipdb
 
 ## Requirements for Installation
 - Python version: 3.8.13
