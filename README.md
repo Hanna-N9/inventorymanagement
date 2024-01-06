@@ -23,8 +23,6 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
 ## Dependencies in Project
 - colorama: To colorize text
 - texttable: To display structured tables
-- faker: To generate fake data
-- pytest: A testing framework
 - ipdb: A Python debugger
 
 ## Requirements for Installation
