@@ -45,7 +45,11 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
    ```
    pipenv shell
    ```
-5. Run the command to initialize a database with data of categories and products. This command is to execute a Python script located at lib/seed.py:
+5. Navigate to server
+   ```
+   cd server
+   ```
+6. Run the command to initialize a database with data of categories and products. This command is to execute a Python script located at lib/seed.py:
    ```
    python3 lib/seed.py
    ```
