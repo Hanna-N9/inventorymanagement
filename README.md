@@ -35,7 +35,7 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
 1. Open your terminal
 2. Fork and clone the repository:
    ```
-   git clone https://github.com/brendenwest/lostappleproject.git
+   git clone git@github.com:Hanna-N9/inventorymanagement.git
    ```
 3. Run the command to install the packages and create a virtual environment in your terminal:
    ```
@@ -49,9 +49,24 @@ InventoryManagement! is helpful for anyone who needs to manage an inventory of p
    ```
    cd server
    ```
-6. Run the command to initialize a database with data of categories and products. This command is to execute a Python script located at lib/seed.py:
+6. Run the command to install colorama:
+- If you are using Python 2:
    ```
-   python3 lib/seed.py
+   pip install colorama
+   ```
+- If you are using Python 3
+   ```
+   pip3 install colorama
+   ```
+7. Run the command to install texttable:
+- If you are using Python 2:
+   ```
+   pip install texttable
+   ```
+- If you are using Python 3
+   ```
+   pip3 install texttable
+
    ```
 
 ## How to Use the App
